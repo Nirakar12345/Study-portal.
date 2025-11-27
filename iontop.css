@@ -1,0 +1,239 @@
+/* बेसिक रीसेट और फ़ॉन्ट */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* सुनिश्चित करता है कि फुटर नीचे तक जाए */
+}
+
+/* टॉप ग्रेडिएंट बार */
+.header-bar {
+    width: 100%;
+    /* मुख्य ग्रेडिएंट: नारंगी से लाल */
+    background: linear-gradient(to right, #ff8c00, #ff4500, #c41e3a); 
+    padding: 10px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    height: 60px; /* छवि जैसा दिखने के लिए */
+}
+
+.select-region {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2); /* थोड़ा पारदर्शी सफेद बैकग्राउंड */
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.select-region i {
+    margin-right: 5px;
+}
+
+/* मुख्य लॉगिन कंटेनर */
+.login-container {
+    background-color: white;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    top: -40px; /* ग्रेडिएंट बार को ओवरलैप करने के लिए */
+}
+
+.logo-circle {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-image {
+    width: 60px;
+    height: 40px;
+    /* लोगो को और करीब से बनाने के लिए आपको एक इमेज फाइल की जरूरत होगी */
+}
+
+.login-title {
+    text-align: left;
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: normal;
+    color: #333;
+}
+
+/* फ़ॉर्म स्टाइलिंग */
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 25px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.password-wrapper {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.password-wrapper .input-field {
+    margin-bottom: 0; /* कंटेनर में मार्जिन है */
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    color: #999;
+    cursor: pointer;
+}
+
+/* रिमेंबर मी और फॉरगॉट लिंक्स */
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    color: #666;
+}
+
+.remember-me label {
+    margin-left: 5px;
+}
+
+.forgot-links a {
+    color: #ff4500;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.forgot-links a:hover {
+    text-decoration: underline;
+}
+
+/* लॉगिन बटन */
+.login-button {
+    background: linear-gradient(to right, #ff4500, #ff6347, #ff8c00); 
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    opacity: 0.9;
+}
+
+/* 'OR Login With' सेक्शन */
+.or-login {
+    text-align: center;
+    margin: 25px 0;
+    color: #999;
+    position: relative;
+}
+
+.or-login::before,
+.or-login::after {
+    content: '';
+    position: absolute;
+    width: 35%;
+    height: 1px;
+    background-color: #ddd;
+    top: 50%;
+}
+
+.or-login::before {
+    left: 0;
+}
+
+.or-login::after {
+    right: 0;
+}
+
+/* सोशल मीडिया आइकन */
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.social-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+.google { background-color: #db4437; }
+.facebook { background-color: #4267b2; }
+.linkedin { background-color: #0a66c2; }
+.tcs { background-color: #3b306b; } /* ब्लू/पर्पल आइकन के लिए */
+
+/* फुटर स्टाइलिंग */
+.site-footer {
+    width: 100%;
+    background-color: #f7f7f7;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin-top: auto; /* फुटर को नीचे धकेलता है */
+    border-top: 1px solid #eee;
+}
+
+.site-footer a {
+    color: #3b306b;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}

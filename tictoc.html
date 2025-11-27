@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Class 10 Maths Portal</title>
+  <style>
+    :root{--bg:#f4f6fb;--card:#fff;--accent:#2563eb}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;margin:0;background:linear-gradient(180deg,var(--bg),#e8eefc);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .container{width:100%;max-width:980px;background:var(--card);border-radius:12px;box-shadow:0 10px 30px rgba(18,38,63,0.08);overflow:hidden;display:grid;grid-template-columns:420px 1fr}
+    .left{padding:32px;background:linear-gradient(180deg,#fbfcff,#f1f6ff);display:flex;flex-direction:column;gap:18px}
+    .logo{font-weight:700;color:var(--accent);font-size:20px}
+    h1{margin:0;font-size:22px}
+    p.lead{margin:0;color:#475569}
+    form{margin-top:8px;display:flex;flex-direction:column;gap:10px}
+    input{padding:12px;border-radius:8px;border:1px solid #e6eefb;font-size:14px}
+    button{padding:12px;border-radius:8px;border:0;background:var(--accent);color:white;font-weight:600;cursor:pointer}
+    .small{font-size:13px;color:#64748b}
+    .right{padding:28px}
+    .hidden{display:none}
+    nav{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    .chip{padding:8px 12px;border-radius:999px;background:#eef2ff;color:#1e3a8a;font-weight:600;font-size:13px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .card{background:#fff;border:1px solid #eef2ff;padding:14px;border-radius:8px}
+    .content-title{font-size:20px;margin:0 0 8px 0}
+    .lesson{padding:10px;border-radius:8px;border:1px dashed #e6eefb;margin-bottom:8px;background:linear-gradient(180deg,#fff,#fbfdff)}
+    footer{margin-top:18px;color:#94a3b8;font-size:13px}
+    @media (max-width:880px){.container{grid-template-columns:1fr} .left{order:2} .right{order:1}}
+  </style>
+</head>
+<body>
+  <div class="container" role="application">
+    <div class="left" aria-labelledby="portal-title">
+      <div>
+        <div class="logo">MySchool • Maths</div>
+        <h1 id="portal-title">Class 10 — Mathematics</h1>
+        <p class="lead">Practice tests, theory notes, NCERT solved & quick revision.</p>
+      </div>
+
+      <form id="loginForm" aria-label="Login form">
+        <label class="small">Class / Group</label>
+        <input id="classInput" type="text" value="10" readonly />
+        <label class="small">Enter your name</label>
+        <input id="nameInput" type="text" placeholder="e.g., Rahul" required />
+        <label class="small">Choose session</label>
+        <select id="sessionSelect">
+          <option>Morning Revision</option>
+          <option>Afternoon Practice</option>
+          <option>Evening Test</option>
+        </select>
+        <button type="submit">Open Portal</button>
+        <div class="small">Tip: you don't need a password — this is a demo single-file portal.</div>
+      </form>
+
+      <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
+        <div class="small">Made for Class 10 Maths • Local demo</div>
+      </div>
+    </div>
+
+    <div class="right">
+      <nav>
+        <div class="chip">Class 10</div>
+        <div style="color:#64748b">Mathematics</div>
+      </nav>
+
+      <section id="welcome" aria-live="polite">
+        <p class="content-title">Welcome — open the portal from the left</p>
+        <p class="small">This demo behaves like a single-link portal: when a user "logs in" it shows a dashboard with quick links (notes, tests, videos).</p>
+      </section>
+
+      <section id="dashboard" class="hidden">
+        <h2 class="content-title">Dashboard</h2>
+        <div class="grid">
+          <div class="card">
+            <strong>Quick Revision</strong>
+            <p class="small">Short topic-wise formulas & methods</p>
+            <div style="margin-top:8px">
+              <div class="lesson">Quadratic Equations — Solver & tips</div>
+              <div class="lesson">Trigonometry — Identities & shortcuts</div>
+              <div class="lesson">Coordinate Geometry — Distance & section</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <strong>Practice Tests</strong>
+            <p class="small">Timed tests with instant scoring</p>
+            <div style="margin-top:8px">
+              <button onclick="runTest('algebra')">Algebra — 20 min</button>
+              <button onclick="runTest('geometry')">Geometry — 25 min</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px">
+          <strong>NCERT Solutions</strong>
+          <p class="small">Solved examples from textbook (chapter-wise)</p>
+        </div>
+
+        <footer>
+          <div id="sessionInfo"></div>
+        </footer>
+      </section>
+
+      <section id="testScreen" class="hidden">
+        <h2 class="content-title">Test — <span id="testName"></span></h2>
+        <div id="testArea">
+          <p class="small">(Demo) Sample question: What is the value of x if x^2 - 5x + 6 = 0 ?</p>
+          <ol>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>1</li>
+          </ol>
+          <button onclick="endTest()">Finish Test</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const dashboard = document.getElementById('dashboard');
+    const welcome = document.getElementById('welcome');
+    const sessionInfo = document.getElementById('sessionInfo');
+    const testScreen = document.getElementById('testScreen');
+    const testNameEl = document.getElementById('testName');
+
+    function showDashboard(name, session){
+      welcome.classList.add('hidden');
+      dashboard.classList.remove('hidden');
+      testScreen.classList.add('hidden');
+      sessionInfo.textContent = `Signed in as ${name} — ${session}`;
+    }
+
+    loginForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('nameInput').value.trim() || 'Student';
+      const session = document.getElementById('sessionSelect').value;
+      // Simulate a unique link by updating the URL hash (so user can copy it)
+      const token = encodeURIComponent(name.toLowerCase().replace(/\s+/g,'-')) + '-' + Date.now();
+      history.replaceState(null,'', '#/class10/' + token);
+      showDashboard(name, session);
+    });
+
+    function runTest(topic){
+      dashboard.classList.add('hidden');
+      testScreen.classList.remove('hidden');
+      testNameEl.textContent = topic;
+    }
+
+    function endTest(){
+      alert('Test submitted (demo). Your score: 100%');
+      dashboard.classList.remove('hidden');
+      testScreen.classList.add('hidden');
+    }
+
+    // If user opens a saved link with hash, try to restore a session
+    window.addEventListener('load', ()=>{
+      const h = location.hash;
+      if(h && h.startsWith('#/class10/')){
+        const token = h.split('/').pop();
+        const name = token.split('-')[0] || 'Student';
+        showDashboard(decodeURIComponent(name), 'Restored session');
+      }
+    });
+  </script>
+</body>
+</html>
